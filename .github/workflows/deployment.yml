@@ -46,3 +46,7 @@ jobs:
         run: npm run build
       - name: Build Project
         run: npm run build
+      - name: Deploying
+        run: echo "Deploying..."
+      - name: Deployed
+        run: echo "Deployed."
