@@ -1,5 +1,7 @@
 name: Lint,Test & Deploy on Push
-on: push
+on:
+  push:
+    branches: main
 jobs:
   Linting:
     runs-on: ubuntu-latest
