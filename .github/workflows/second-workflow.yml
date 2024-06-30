@@ -17,13 +17,13 @@ jobs:
         run: npm ci
       - name: Run Tests
         run: npm run test
-    Deploy:
-      needs: test
-      runs-on: ubuntu-latest
-      steps:
-        - name: Output Github Context
-          run: echo ${{github}}
-        - name: Deploying
-          run: echo "Deploying..."
-        - name: Deployed
-          run: echo "Deployed."
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github Context
+        run: echo ${{github}}
+      - name: Deploying
+        run: echo "Deploying..."
+      - name: Deployed
+        run: echo "Deployed."
