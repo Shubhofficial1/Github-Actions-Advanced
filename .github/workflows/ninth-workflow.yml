@@ -1,8 +1,9 @@
 name: Ninth Workflow
 on:
-  push:
-    branches: main
+  # push:
+  #   branches: main
   workflow_dispatch:
+    branches: main
 jobs:
   testing:
     runs-on: ubuntu-latest
