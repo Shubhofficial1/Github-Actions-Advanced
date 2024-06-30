@@ -1,0 +1,50 @@
+name: Ninth Workflow
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+job:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        uses: npm ci
+      - name: Check linting
+        run: npm run lint
+      - name: Check tests
+        run: npm run test
+  build:
+    needs: testing
+    runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{steps.publish.outputs.script-file}}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Publish Js file
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output filename
+        run: echo ${needs.build.outputs.script-file}}
+      - name: Deploying project
+        run: echo "Deploying..."
+      - name: Deployed project
+        run: echo "Deployed."
