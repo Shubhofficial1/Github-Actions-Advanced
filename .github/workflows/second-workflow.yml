@@ -1,0 +1,29 @@
+name: Second Workflow
+on:
+  push:
+    branches: main
+  worflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        run: actions/checkout@v3
+      - name: Install Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
+    Deploy:
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Output Github Context
+          run: echo ${{github}}
+        - name: Deploying
+          run: echo "Deploying..."
+        - name: Deployed
+          run: echo "Deployed."
