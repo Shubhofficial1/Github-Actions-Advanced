@@ -1,9 +1,21 @@
 name: Fifth Workflow
 on:
   pull_request:
+    # Activity Types
     types:
       - opened
+    branches:
+      - main # main branch
+      - dev-* # dev-something  dev-interesting-addition
+      - feat/** # feat/something/random/feature
   workflow_dispatch:
+  push:
+    branches:
+      - main # main branch
+      - dev-* # dev-something  dev-interesting-addition
+      - feat/** # feat/something/random/feature
+      # paths:
+      # paths-ignore:
 jobs:
   deploy:
     runs-on: ubuntu-latest
