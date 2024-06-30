@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output filename
-        run: echo ${needs.build.outputs.script-file}}
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Deploying project
         run: echo "Deploying..."
       - name: Deployed project
