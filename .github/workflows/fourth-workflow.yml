@@ -1,0 +1,12 @@
+name: Fourth Workflow
+on:
+  issues:
+    types:
+      - opened
+      - closed
+jobs:
+  output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Issues Event Details
+        run: echo "${{toJSON(github.events)}}"
